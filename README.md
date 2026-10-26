@@ -1,7 +1,7 @@
 # Neon Flow
 
 Every project by Caleb Juarez (Neon Forger), each with its own page.
-Live at https://neon-forger.github.io/NeonFlow/
+Live at https://neon-forger.github.io/Neon-Flow/
 
 ## Adding a project
 - Easiest: open **Submit a project** on the site (a GitHub form), then add it to `projects.js`.
