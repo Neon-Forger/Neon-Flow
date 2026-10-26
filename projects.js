@@ -102,7 +102,7 @@ window.PROJECTS = [
     platform: "Android 10 and up",
     status: "public",
     downloads: [
-      { label: "for Android", href: "https://neon-forger.github.io/NeonFuel/downloads/Manhunt-1.5.apk", size: "56 MB" }
+      { label: "for Android", href: "downloads/Manhunt-1.5.apk", size: "56 MB" }
     ],
     version: "1.5",
     built: "Kotlin, Jetpack Compose, osmdroid maps, MQTT and an encrypted relay",
@@ -155,7 +155,7 @@ window.PROJECTS = [
     platform: "Android 10 and up, with Shizuku",
     status: "public",
     downloads: [
-      { label: "for Android", href: "https://neon-forger.github.io/NeonFuel/downloads/NeonFreeze-2.apk", size: "52 MB" }
+      { label: "for Android", href: "downloads/NeonFreeze-2.apk", size: "52 MB" }
     ],
     version: "2",
     built: "Kotlin, Jetpack Compose, Shizuku",
@@ -185,6 +185,54 @@ window.PROJECTS = [
   },
 
   {
+    id: "neonclip",
+    name: "NeonClip",
+    tagline: "An AI content studio on your PC, with a phone app to watch and steer it.",
+    accent: "#ffd400",
+    cover: "assets/covers/neonclip.svg",
+    platform: "Windows 10 or 11, plus Android 8 and up",
+    status: "public",
+    version: "Latest release",
+    built: "A PC agent with AI video editing, plus an Android companion app",
+    latestFrom: "Neon-Forger/Clipping-Agent",
+    downloads: [
+      { label: "for Android", href: "https://github.com/Neon-Forger/Clipping-Agent/releases/latest", size: "latest", match: ".apk" },
+      { label: "for Windows PC", href: "https://github.com/Neon-Forger/Clipping-Agent/releases/latest", size: "latest", match: ".zip" }
+    ],
+    hint: "For the PC program, unzip it on your Windows PC.",
+    summary: "Two content machines in one PC program, clipping and YouTube, with a phone app that shows what it's doing and lets you change anything.",
+    story: [
+      { h: "Two sections", p: [
+        "NeonClip runs on your PC and has two separate jobs. The clipping section takes videos from Content Rewards campaigns, cuts them into clips with AI, edits them with captions, zooms and flashes, posts them to TikTok, and submits each link for payout.",
+        "The YouTube section signs in with your Google account, lets you pick a channel or create one (with a neon profile picture and banner), and then makes long videos and Shorts every day. It can make original AI videos, with a script, voiceover, footage, captions and chapters, or edit videos you're allowed to reuse: your own, ones you have permission for, or Creative Commons. It writes neon thumbnails, titles, descriptions and tags, and uploads at the times you choose."
+      ]},
+      { h: "The phone app", p: [
+        "The Android app shows the live status of both sections, sends you notifications, and lets you change any setting, or just type what you want it to do."
+      ]}
+    ],
+    features: [
+      { h: "Clipping", items: [
+        "AI clips from Content Rewards campaign videos",
+        "Captions, zooms and flashes added automatically",
+        "Posts to TikTok and submits each link for payout"
+      ]},
+      { h: "YouTube", items: [
+        "Pick or create a channel with a neon profile picture and banner",
+        "Daily long videos and Shorts",
+        "Original AI videos or edits of videos you're allowed to reuse",
+        "Thumbnails, titles, descriptions and tags, uploaded on schedule"
+      ]},
+      { h: "Phone app", items: [
+        "Live status and notifications",
+        "Change any setting, or tell it what to do"
+      ]}
+    ],
+    gallery: [
+      { src: "assets/covers/neonclip.svg", caption: "Illustration: the PC editor cutting a clip, and the phone app showing what it's doing." }
+    ]
+  },
+
+  {
     id: "neonshare",
     name: "NeonShare",
     tagline: "Your PC screen, live on your phone.",
@@ -198,6 +246,7 @@ window.PROJECTS = [
     ],
     version: "1.0",
     built: "Kotlin and Jetpack Compose on the phone, C# WinForms on the PC",
+    hint: "For the PC program, unzip it and double-click NeonShare PC.bat.",
     summary: "A Windows program streams your desktop to the NeonShare phone app over your home Wi-Fi, protected by a 6-digit PIN.",
     story: [
       { h: "How it works", p: [

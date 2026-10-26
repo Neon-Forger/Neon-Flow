@@ -19,7 +19,7 @@
           <p class="sum">${esc(p.summary)}</p>
           <div class="row">
             <a class="more" href="project.html?p=${p.id}">Read the full story</a>
-            ${(p.downloads || []).slice(0, 1).map((d) => `<a class="dl" href="${d.href}" download>Download (${esc(d.size)})</a>`).join("")}
+            ${(p.downloads || []).slice(0, 1).map((d) => `<a class="dl" href="${d.href}" data-dl="${p.id}-0" download>Download <span class="sz">(${esc(d.size)})</span></a>`).join("")}
           </div>
         </div>
       </article>`).join("");
@@ -73,6 +73,26 @@
     window.addEventListener("resize", draw);
     flow.querySelectorAll("img").forEach((img) => img.addEventListener("load", draw));
     if (document.fonts) document.fonts.ready.then(draw);
+    liveReleases();
+  }
+
+  // ------------------------------------------------------------------ newest release for projects published on GitHub Releases
+  function liveReleases() {
+    P.filter((p) => p.latestFrom).forEach((p) => {
+      fetch(`https://api.github.com/repos/${p.latestFrom}/releases/latest`).then((r) => r.json()).then((rel) => {
+        if (!rel || !rel.tag_name) return;
+        p.downloads.forEach((d, k) => {
+          const a = (rel.assets || []).find((x) => x.name.toLowerCase().endsWith(d.match));
+          if (!a) return;
+          document.querySelectorAll(`[data-dl="${p.id}-${k}"]`).forEach((el) => {
+            el.href = a.browser_download_url;
+            const mb = a.size >= 1048576 ? `${Math.round(a.size / 1048576)} MB` : `${Math.max(1, Math.round(a.size / 1024))} KB`;
+            const sz = el.querySelector(".sz"); if (sz) sz.textContent = el.classList.contains("dl") ? `(${mb})` : mb;
+          });
+        });
+        document.querySelectorAll(`[data-ver="${p.id}"]`).forEach((el) => { el.textContent = rel.tag_name; });
+      }).catch(() => {});
+    });
   }
 
   // ------------------------------------------------------------------ project page
@@ -95,8 +115,8 @@
         <div>
           <h1>${p.icon ? `<img src="${p.icon}" alt="">` : ""}${esc(p.name)}</h1>
           <p class="tag">${esc(p.tagline)}</p>
-          ${(p.downloads || []).length ? `<div class="dls">${p.downloads.map((d, k) => `<a class="btn ${k === 0 ? "solid" : ""}" href="${d.href}" download>Download ${esc(d.label)} <small>${esc(d.size)}</small></a>`).join("")}</div>
-          <p class="hint">${p.downloads.some((d) => d.href.endsWith(".apk")) ? "Open the file on your phone to install it. Android may ask you to allow installs from your browser the first time." : ""}${p.downloads.some((d) => d.href.endsWith(".zip")) ? " For the PC program, unzip it and double-click NeonShare PC.bat." : ""}</p>` : `<span class="status">Not public yet.</span>`}
+          ${(p.downloads || []).length ? `<div class="dls">${p.downloads.map((d, k) => `<a class="btn ${k === 0 ? "solid" : ""}" href="${d.href}" data-dl="${p.id}-${k}" download>Download ${esc(d.label)} <small class="sz">${esc(d.size)}</small></a>`).join("")}</div>
+          <p class="hint">${p.downloads.some((d) => d.label === "for Android") ? "Open the Android file on your phone to install it. Android may ask you to allow installs from your browser the first time." : ""} ${esc(p.hint || "")}</p>` : `<span class="status">Not public yet.</span>`}
         </div>
         <figure style="margin:0">
           <img class="cover" src="${p.cover}" alt="${esc(p.name)} cover">
@@ -106,7 +126,7 @@
 
       <dl class="facts">
         <div><dt>Runs on</dt><dd>${esc(p.platform)}</dd></div>
-        <div><dt>Latest version</dt><dd>${esc(p.version)}</dd></div>
+        <div><dt>Latest version</dt><dd data-ver="${p.id}">${esc(p.version)}</dd></div>
         <div><dt>Status</dt><dd>${statusText(p)}</dd></div>
         <div><dt>Built with</dt><dd>${esc(p.built)}</dd></div>
       </dl>
@@ -140,4 +160,5 @@
         ${next ? `<a class="next" href="project.html?p=${next.id}"><small>Next</small><span>${esc(next.name)}</span></a>` : ""}
       </nav>`;
   }
+  if (host) liveReleases();
 })();
