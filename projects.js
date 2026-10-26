@@ -4,7 +4,7 @@
   Fields:
     id, name, tagline, accent (hex), cover (image), platform, status ("public" or "private"), version, built
     summary   short text for the home page
-    get       { href, label } when people can download it
+    downloads [{ label, href, size }]  direct download buttons
     story     [{ h, p: [paragraphs] }]  the long description
     features  [{ h, items: [...] }]
     gallery   [{ src, caption, phone: true for tall phone screenshots }]
@@ -20,10 +20,12 @@ window.PROJECTS = [
     icon: "assets/neonfuel/logo.png",
     platform: "Android 10 and up",
     status: "public",
+    downloads: [
+      { label: "for Android", href: "https://neon-forger.github.io/NeonFuel/downloads/NeonFuel-1.8.2.apk", size: "58 MB" }
+    ],
     version: "1.8.2",
     built: "Kotlin, Jetpack Compose, your choice of AI (Gemini, Claude, ChatGPT, Grok, OpenRouter)",
     summary: "An AI calorie scanner, step and lifting tracker, workout planner and friend leaderboard, wrapped in 30+ animated neon themes with their own music.",
-    get: { href: "https://neon-forger.github.io/NeonFuel/", label: "Download from the NeonFuel site" },
     story: [
       { h: "Why it exists", p: [
         "Most calorie apps make you search a database and guess how big your portion was. NeonFuel flips that around: you point the camera at your plate and the AI does the looking. It knows how wide your plate is (you measure it once during setup), so it can use the rim as a ruler and estimate how much food is actually there.",
@@ -99,10 +101,12 @@ window.PROJECTS = [
     cover: "assets/covers/manhunt.svg",
     platform: "Android 10 and up",
     status: "public",
+    downloads: [
+      { label: "for Android", href: "https://neon-forger.github.io/NeonFuel/downloads/Manhunt-1.5.apk", size: "56 MB" }
+    ],
     version: "1.5",
     built: "Kotlin, Jetpack Compose, osmdroid maps, MQTT and an encrypted relay",
     summary: "Hunters get a live map with pings, hiders get a radar pointing at the hunters. Game modes, a drawn play area, and positions that update in under half a second.",
-    get: { href: "https://neon-forger.github.io/NeonFuel/#manhunt", label: "Download from the NeonFuel site" },
     story: [
       { h: "The game", p: [
         "One person hosts, picks the rules and draws the play area as a circle or square, anywhere from 1 to 500 meters across. Hunters see a satellite or street map with breadcrumbs, and every few minutes the hiders' positions ping onto it. Hiders see a radar with a red arrow pointing at where the hunters are right now, and their phone buzzes at 100, 50 and 25 meters when one gets close.",
@@ -150,10 +154,12 @@ window.PROJECTS = [
     cover: "assets/covers/neonfreeze.svg",
     platform: "Android 10 and up, with Shizuku",
     status: "public",
+    downloads: [
+      { label: "for Android", href: "https://neon-forger.github.io/NeonFuel/downloads/NeonFreeze-2.apk", size: "52 MB" }
+    ],
     version: "2",
     built: "Kotlin, Jetpack Compose, Shizuku",
     summary: "Lists every app on your phone and lets you freeze the ones you don't want running, with a protect list for the apps it should never touch.",
-    get: { href: "https://neon-forger.github.io/NeonFuel/#manhunt", label: "Download from the NeonFuel site" },
     story: [
       { h: "What it does", p: [
         "Phones fill up with apps that run in the background even when you never open them. NeonFreeze shows every installed app with a search box and filters, and lets you freeze any of them. A frozen app can't run, send notifications or use battery until you unfreeze it, and your data inside it is kept.",
@@ -184,8 +190,12 @@ window.PROJECTS = [
     tagline: "Your PC screen, live on your phone.",
     accent: "#ff4fd8",
     cover: "assets/covers/neonshare.svg",
-    platform: "Android app plus a Windows program",
-    status: "private",
+    platform: "Android 8 and up, plus a Windows PC",
+    status: "public",
+    downloads: [
+      { label: "for Android", href: "downloads/NeonShare-1.0.apk", size: "8.4 MB" },
+      { label: "for Windows PC", href: "downloads/NeonShare-PC.zip", size: "10 KB" }
+    ],
     version: "1.0",
     built: "Kotlin and Jetpack Compose on the phone, C# WinForms on the PC",
     summary: "A Windows program streams your desktop to the NeonShare phone app over your home Wi-Fi, protected by a 6-digit PIN.",
@@ -220,8 +230,11 @@ window.PROJECTS = [
     accent: "#b06bff",
     cover: "assets/covers/neonlink.svg",
     icon: "assets/shared/neonlink-logo.png",
-    platform: "Android",
-    status: "private",
+    platform: "Android 12 and up",
+    status: "public",
+    downloads: [
+      { label: "for Android", href: "downloads/NeonLink-1.2.apk", size: "52 MB" }
+    ],
     version: "1.2",
     built: "Kotlin, Jetpack Compose, Android audio routing",
     summary: "Sends your phone's audio to multiple outputs together, with per-device delay so everything plays in sync, plus a guide to Pixel Audio Sharing.",
@@ -255,8 +268,11 @@ window.PROJECTS = [
     tagline: "A radar for every Bluetooth device around you.",
     accent: "#3dff8a",
     cover: "assets/covers/neonradar.svg",
-    platform: "Android",
-    status: "private",
+    platform: "Android 12 and up",
+    status: "public",
+    downloads: [
+      { label: "for Android", href: "downloads/NeonRadar-1.3.apk", size: "55 MB" }
+    ],
     version: "1.3",
     built: "Kotlin, Jetpack Compose, Bluetooth Low Energy scanning, CameraX",
     summary: "Hears nearby Bluetooth devices, estimates how far away they are, and works out which direction they're in as you turn. Built for finding lost earbuds.",
@@ -291,8 +307,11 @@ window.PROJECTS = [
     accent: "#ff4fd8",
     cover: "assets/covers/neonscribe.svg",
     icon: "assets/shared/neonscribe-logo.png",
-    platform: "Android (best on Pixel)",
-    status: "private",
+    platform: "Android 13 and up (best on Pixel)",
+    status: "public",
+    downloads: [
+      { label: "for Android", href: "downloads/NeonScribe-1.1.apk", size: "52 MB" }
+    ],
     version: "1.1",
     built: "Kotlin, Jetpack Compose, on-device speech recognition, Gemini or other AI",
     summary: "Transcribes conversations as they happen, answers questions when you say \"hey Gemini\", and writes a summary when you're done.",
@@ -327,8 +346,11 @@ window.PROJECTS = [
     tagline: "Point your phone at a soccer ball and see where your kick will land.",
     accent: "#3be8ff",
     cover: "assets/covers/neonstrike.svg",
-    platform: "Android",
-    status: "private",
+    platform: "Android 10 and up",
+    status: "public",
+    downloads: [
+      { label: "for Android", href: "downloads/NeonStrike-1.0.apk", size: "91 MB" }
+    ],
     version: "1.0",
     built: "Kotlin, CameraX, MediaPipe ball detection and pose tracking, on-device learning",
     summary: "Tracks the ball and your kicking foot with on-device AI, draws an arrow to where the ball will land, and shows ball and foot speed.",

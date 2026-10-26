@@ -81,7 +81,8 @@ img { display: block; max-width: 100%; }
   background: var(--accent); box-shadow: 0 0 0 6px var(--night), 0 0 26px 4px var(--accent);
 }
 
-.card { position: relative; text-decoration: none; display: block; }
+.card { position: relative; display: block; }
+.card-link { text-decoration: none; display: block; }
 .card .cover {
   aspect-ratio: 16 / 9; width: 100%; object-fit: cover; border-radius: var(--radius-lg);
   border: 1.5px solid color-mix(in srgb, var(--accent) 55%, transparent);
@@ -98,6 +99,12 @@ img { display: block; max-width: 100%; }
 .status::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--soft); }
 .status.public { color: var(--ink); }
 .status.public::before { background: #3dff8a; box-shadow: 0 0 10px #3dff8a; }
+.dl { color: var(--ink); font-weight: 600; text-decoration: none; padding: 7px 14px; border-radius: 999px; border: 1.5px solid color-mix(in srgb, var(--accent) 70%, transparent); }
+.dl:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+.dls { display: flex; flex-wrap: wrap; gap: 12px; }
+.dls .btn { white-space: nowrap; }
+.dls small { font-weight: 400; opacity: .75; }
+.hint { color: var(--soft); font-size: 15px; line-height: 1.45; margin: 14px 0 0; max-width: 46ch; }
 .more { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
 
 /* ---------- footer ---------- */

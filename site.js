@@ -2,7 +2,7 @@
   const P = window.PROJECTS || [];
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const statusText = (p) => (p.status === "public" ? "Available to download" : "Not public yet");
+  const statusText = (p) => ((p.downloads || []).length ? "Free to download" : "Not public yet");
 
   // ------------------------------------------------------------------ home: projects along the flow line
   const flow = document.getElementById("flow");
@@ -10,16 +10,18 @@
     flow.innerHTML = P.map((p) => `
       <article class="station" style="--accent:${p.accent}">
         <span class="node" aria-hidden="true"></span>
-        <a class="card" href="project.html?p=${p.id}">
-          <img class="cover" src="${p.cover}" alt="${esc(p.name)} cover" loading="lazy">
-          <h2>${p.icon ? `<img src="${p.icon}" alt="">` : ""}${esc(p.name)}</h2>
+        <div class="card">
+          <a class="card-link" href="project.html?p=${p.id}">
+            <img class="cover" src="${p.cover}" alt="${esc(p.name)} cover" loading="lazy">
+            <h2>${p.icon ? `<img src="${p.icon}" alt="">` : ""}${esc(p.name)}</h2>
+          </a>
           <p class="tag">${esc(p.tagline)}</p>
           <p class="sum">${esc(p.summary)}</p>
           <div class="row">
-            <span class="status ${p.status}">${statusText(p)}</span>
-            <span class="more">Read the full story</span>
+            <a class="more" href="project.html?p=${p.id}">Read the full story</a>
+            ${(p.downloads || []).slice(0, 1).map((d) => `<a class="dl" href="${d.href}" download>Download (${esc(d.size)})</a>`).join("")}
           </div>
-        </a>
+        </div>
       </article>`).join("");
 
     const NS = "http://www.w3.org/2000/svg";
@@ -93,7 +95,8 @@
         <div>
           <h1>${p.icon ? `<img src="${p.icon}" alt="">` : ""}${esc(p.name)}</h1>
           <p class="tag">${esc(p.tagline)}</p>
-          ${p.get ? `<a class="btn solid" href="${p.get.href}">${esc(p.get.label)}</a>` : `<span class="status">Not public yet. Ask Caleb if you'd like to try it.</span>`}
+          ${(p.downloads || []).length ? `<div class="dls">${p.downloads.map((d, k) => `<a class="btn ${k === 0 ? "solid" : ""}" href="${d.href}" download>Download ${esc(d.label)} <small>${esc(d.size)}</small></a>`).join("")}</div>
+          <p class="hint">${p.downloads.some((d) => d.href.endsWith(".apk")) ? "Open the file on your phone to install it. Android may ask you to allow installs from your browser the first time." : ""}${p.downloads.some((d) => d.href.endsWith(".zip")) ? " For the PC program, unzip it and double-click NeonShare PC.bat." : ""}</p>` : `<span class="status">Not public yet.</span>`}
         </div>
         <figure style="margin:0">
           <img class="cover" src="${p.cover}" alt="${esc(p.name)} cover">
