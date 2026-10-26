@@ -1,0 +1,51 @@
+name: Submit a project
+description: Add a new project to Neon Flow. It gets its own page with the full story.
+title: "New project: "
+labels: ["new project"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Project name
+      placeholder: NeonSomething
+    validations:
+      required: true
+  - type: input
+    id: tagline
+    attributes:
+      label: One sentence about it
+      description: Shown under the name on the home page.
+      placeholder: Point your phone at the sky and it names every star.
+    validations:
+      required: true
+  - type: textarea
+    id: story
+    attributes:
+      label: The full story
+      description: What it does, why you made it, how it works, anything you're proud of. More detail is better.
+    validations:
+      required: true
+  - type: textarea
+    id: features
+    attributes:
+      label: Features
+      description: One per line.
+  - type: input
+    id: platform
+    attributes:
+      label: What it runs on
+      placeholder: Android 10 and up
+  - type: input
+    id: version
+    attributes:
+      label: Latest version
+      placeholder: "1.0"
+  - type: input
+    id: download
+    attributes:
+      label: Download link (leave blank if it isn't public yet)
+  - type: textarea
+    id: pictures
+    attributes:
+      label: Pictures
+      description: Drag screenshots or images into this box. Add a short caption for each.
