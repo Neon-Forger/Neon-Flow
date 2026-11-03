@@ -21,9 +21,9 @@ window.PROJECTS = [
     platform: "Android 10 and up",
     status: "public",
     downloads: [
-      { label: "for Android", href: "https://neon-forger.github.io/NeonFuel/downloads/NeonFuel-1.9.apk", size: "58 MB" }
+      { label: "for Android", href: "https://neon-forger.github.io/NeonFuel/downloads/NeonFuel-1.9.1.apk", size: "58 MB" }
     ],
-    version: "1.9",
+    version: "1.9.1",
     built: "Kotlin, Jetpack Compose, your choice of AI (Gemini, Claude, ChatGPT, Grok, OpenRouter)",
     summary: "An AI calorie scanner, step and lifting tracker, workout planner and friend leaderboard, wrapped in 30+ animated neon themes with their own music.",
     story: [
@@ -77,6 +77,7 @@ window.PROJECTS = [
       { src: "assets/neonfuel/cosmic-themes.jpg", caption: "Cosmic themes, from Event Horizon to Meteor Storm." }
     ],
     history: [
+      { v: "1.9.1", title: "The newest NeonFuel" },
       { v: "1.9", title: "Opening the app keeps your streak, Halloween Night theme, stopwatch" },
       { v: "1.8.2", title: "Faster Scan screen" },
       { v: "1.8.1", title: "Cleaner plans, scan and settings" },
